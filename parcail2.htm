@@ -83,8 +83,26 @@ function midpointCircle(cx, cy, r, color=""#FF0000"") {
             }
             x++;
         }
+}
 
+/*Funcion para calcular los vertices de un poligono regular
+Parametros cx, cy: coordenadas del centro del poligono
+Parametros r: radio del poligono (distancia desde el centro a un vertice)
+Parametros n: numero de vertices del poligono
+*/
+function getPolygonVertices(cx, cy, r, n) {
+    let vertices = [];
 
+    for (let i = 0; i <n; i++) {
+        let angle = (2 * Math.PI * i) /n;
+
+        let x=cx+r*Math.cos(angle);
+        let y=cy+r*Math.sin(angle);
+
+        vertices.push({ x, y });
+    }
+
+    return vertices;
 }
 
         </script>
