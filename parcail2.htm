@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Parcial 2</title>
+
+    <style> 
+    body { text-align:center; font-family: Arial; }
+    canvas { border:1px solid black; }
+    </style>
+
 </head>
 <body>
-    
+    <canvas id="canvas" width="600" height="600"></canvas>
+    <script>
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+
+//unica funcion permitida
+function plotPixel(x, y, color = "#000") {
+    ctx.fillStyle = color;
+    ctx.fillRect(Math.floor(x), Math.floor(y), 1, 1);
+}
+          
+        </script>
 </body>
 </html>
