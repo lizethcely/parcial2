@@ -64,7 +64,7 @@ Parametros cx, cy: coordenadas del centro de la circunferencia
 Parametros r: radio de la circunferencia
 Parametros color: color de la circunferencia en este caso gris
 */
-function midpointCircle(cx, cy, r, color=""#FF0000"") {
+function midpointCircle(cx, cy, r, color="#FFC0CB") {
       let x = 0;
       let y = r;
       let p = 1 - r; // parametro de desicion inicial
@@ -111,7 +111,7 @@ function getPolygonVertices(cx, cy, r, n) {
 Parametros vertices: arreglo de objetos con las coordenadas de los vertices del poligono
 Parametros color: color del poligono
 */
-function drawPolygon(vertices, color = "#000") {
+function drawPolygon(vertices, color = "#FF69B4") {
     for (let i = 0; i < vertices.length; i++) { //recorre cada vertice del poligono
         let p1 = vertices[i];
         let p2 = vertices[(i + 1) % vertices.length];
@@ -131,7 +131,7 @@ Parametros cx, cy: coordenadas del centro de la orbita
 Parametros r: radio de la orbita            
 Parametros n: numero de posiciones a calcular (puede representar el tiempo o el numero de frames)
 */
-function getPosicionOrbital(cx, cy, r, n) {
+function getOrbitalPositions(cx, cy, r, n) {
 let positions = [];
  for (let i = 0; i < n; i++) {
         let angle = (2 * Math.PI * i) / n; //calcula el angulo para cada posicion en la orbita
@@ -143,9 +143,30 @@ let positions = [];
     }
 return positions;
 }
+/*Funcion principal para dibujar la escena completa
+Dibuja una orbita circular y coloca varios poligonos regulares a lo largo de la orbita utilizando las funciones anteriores
+*/  
+function drawScene() {
+    const cx=300;
+    const cy=300;
 
+    const R=180; //radio orbita
+    const N=6;   //cantidad de polígonos
+    const sides=5;//lados del polígono
+    const polyR=30;
 
+    midpointCircle(cx, cy, R, "#bbb"); // dibujar orbita
 
+    const positions = getOrbitalPositions(cx, cy, R, N);// calcular posiciones de los poligonos a lo largo de la orbita
+
+    // dibujar poligonos
+    positions.forEach(pos => {
+        let vertices = getPolygonVertices(pos.x, pos.y, polyR, sides);
+        drawPolygon(vertices, "#000");
+    });
+}
+
+drawScene(); //llamar a la funcion para dibujar la escena completa
 
 
 
