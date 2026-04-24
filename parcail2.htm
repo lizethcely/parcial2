@@ -111,8 +111,7 @@ function getPolygonVertices(cx, cy, r, n) {
 Parametros vertices: arreglo de objetos con las coordenadas de los vertices del poligono
 Parametros color: color del poligono
 */
-
-function drawPolygon(vertices, color = "#000") 
+function drawPolygon(vertices, color = "#000") {
     for (let i = 0; i < vertices.length; i++) { //recorre cada vertice del poligono
         let p1 = vertices[i];
         let p2 = vertices[(i + 1) % vertices.length];
@@ -126,6 +125,27 @@ function drawPolygon(vertices, color = "#000")
         );
     }
 }
+
+/*Funcion para calcular la posicion de un objeto en una orbita circular
+Parametros cx, cy: coordenadas del centro de la orbita
+Parametros r: radio de la orbita            
+Parametros n: numero de posiciones a calcular (puede representar el tiempo o el numero de frames)
+*/
+function getPosicionOrbital(cx, cy, r, n) {
+let positions = [];
+ for (let i = 0; i < n; i++) {
+        let angle = (2 * Math.PI * i) / n; //calcula el angulo para cada posicion en la orbita
+
+        let x = cx + r * Math.cos(angle); //calcula la coordenada x de la posicion en la orbita
+        let y = cy + r * Math.sin(angle); //calcula la coordenada y de la posicion en la orbita
+
+        positions.push({ x, y });
+    }
+return positions;
+}
+
+
+
 
 
 
