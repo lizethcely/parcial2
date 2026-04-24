@@ -19,7 +19,11 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 
-//unica funcion permitida
+/*unica funcion permitida
+Parametros x, y: coordenadas del pixel a dibujar
+Parametros color: color del pixel a dibujar
+*/
+
 function plotPixel(x, y, color = "#000") {
     ctx.fillStyle = color;
     ctx.fillRect(Math.floor(x), Math.floor(y), 1, 1);
@@ -93,17 +97,37 @@ Parametros n: numero de vertices del poligono
 function getPolygonVertices(cx, cy, r, n) {
     let vertices = [];
 
-    for (let i = 0; i <n; i++) {
-        let angle = (2 * Math.PI * i) /n;
-
+    for (let i = 0; i <n; i++) { //recorre cada vertice del poligono
+        let angle = (2 * Math.PI * i) /n; //calcula el angulo para cada vertice
         let x=cx+r*Math.cos(angle);
         let y=cy+r*Math.sin(angle);
 
-        vertices.push({ x, y });
+        vertices.push({ x, y });//agrega el vertice al arreglo de vertices
     }
-
     return vertices;
 }
+
+/*Funcion para dibujar un poligono dado sus vertices
+Parametros vertices: arreglo de objetos con las coordenadas de los vertices del poligono
+Parametros color: color del poligono
+*/
+
+function drawPolygon(vertices, color = "#000") 
+    for (let i = 0; i < vertices.length; i++) { //recorre cada vertice del poligono
+        let p1 = vertices[i];
+        let p2 = vertices[(i + 1) % vertices.length];
+
+        bresenhamLine(  //dibuja una linea entre el vertice actual y el siguiente vertice 
+            Math.round(p1.x),
+            Math.round(p1.y),
+            Math.round(p2.x),
+            Math.round(p2.y),
+            color
+        );
+    }
+}
+
+
 
         </script>
 </body>
