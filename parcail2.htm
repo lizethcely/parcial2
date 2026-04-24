@@ -30,7 +30,7 @@ function plotPixel(x, y, color = "#000") {
 Parametros x1, y1: coordenadas del punto final
 parametros color: color de la linea en este caso rosa
 */
-          function bresenhamLine(x0, y0, x1, y1, color="#FFC0CB") {
+  function bresenhamLine(x0, y0, x1, y1, color="#FFC0CB") {
             let dx = Math.abs(x1 - x0);
             let dy = Math.abs(y1 - y0);
 
@@ -53,12 +53,39 @@ parametros color: color de la linea en este caso rosa
             y0 += sy;
         }
     }
+}
+
+/*algoritmo de punto medio para circunferencias
+Parametros cx, cy: coordenadas del centro de la circunferencia
+Parametros r: radio de la circunferencia
+Parametros color: color de la circunferencia en este caso gris
+*/
+function midpointCircle(cx, cy, r, color=""#FF0000"") {
+      let x = 0;
+      let y = r;
+      let p = 1 - r; // parametro de desicion inicial
+        while (x <= y) {
+            //dibujar los 8 puntos simetricos de la circunferencia
+            plotPixel(cx + x, cy + y, color);
+            plotPixel(cx - x, cy + y, color);
+            plotPixel(cx + x, cy - y, color);
+            plotPixel(cx - x, cy - y, color);
+            plotPixel(cx + y, cy + x, color);
+            plotPixel(cx - y, cy + x, color);
+            plotPixel(cx + y, cy - x, color);
+            plotPixel(cx - y, cy - x, color);
+    
+            if (p < 0) {
+                p+=2*x+3; // decision para elegir el siguiente punto
+            } else {
+                p+=2*(x-y)+5; // decision para elegir el siguiente punto
+                y--;
+            }
+            x++;
+        }
 
 
-
-
-          }
-
+}
 
         </script>
 </body>
